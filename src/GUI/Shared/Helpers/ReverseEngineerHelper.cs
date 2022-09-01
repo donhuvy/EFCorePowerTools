@@ -56,12 +56,12 @@ namespace EFCorePowerTools.Helpers
             return new Tuple<bool, Version>(hasRights, version);
         }
 
-        public void DropT4Templates(string projectPath)
+        public void DropT4Templates(string projectPath, bool entityConfig)
         {
-            DropTemplates(projectPath, projectPath, CodeGenerationMode.EFCore7, false);
+            DropTemplates(projectPath, projectPath, CodeGenerationMode.EFCore7, false, entityConfig);
         }
 
-        public void DropTemplates(string optionsPath, string projectPath, CodeGenerationMode codeGenerationMode, bool useHandlebars)
+        public void DropTemplates(string optionsPath, string projectPath, CodeGenerationMode codeGenerationMode, bool useHandlebars, bool entityConfig = false)
         {
             string zipName;
             if (useHandlebars)
@@ -85,7 +85,7 @@ namespace EFCorePowerTools.Helpers
             {
                 if (codeGenerationMode == CodeGenerationMode.EFCore7)
                 {
-                    zipName = "T4_700.zip";
+                    zipName = entityConfig ? "T4_700_EntityConfig.zip" : "T4_700.zip";
                 }
                 else
                 {
